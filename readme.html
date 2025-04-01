@@ -1,0 +1,194 @@
+PHP Knapsack Problem Solver<br/>
+
+Author: Roberto Aleman, ventics.com, license AGPL<br/>
+
+This PHP class Knapsack implements a solution to the classic 0/1 Knapsack problem using dynamic programming.<br/>
+<h2>Overview</h2>
+The 0/1 Knapsack problem involves selecting a subset of items, each with a weight and a value, <br/>
+to maximize the total value while staying within a given weight capacity. Each item can either be included or excluded (0 or 1).<br/><br/>
+
+This class provides methods to:<br/>
+
+- Initialize the problem with capacity, weights, and values.<br/>
+- Solve the Knapsack problem using dynamic programming.<br/>
+- Format the results into a human-readable string.<br/>
+<h2>Documentation</h2>
+<h2>Constructor</h2>
+<div>
+<div>
+<div>
+<pre><code role="text" data-test-id="code-content">public function &gt;__construct(int $capacity, array $weights, array $values) {
+    if (count($weights) !== count($values)) {
+        throw new Exception("The weight and value arrays must have the same length!!");
+    }
+
+    $this-&gt;capacity = $capacity;
+    $this-&gt;weights = $weights;
+    $this-&gt;values = $values;
+    $this-&gt;n = count($weights);
+}
+</code></pre>
+</div>
+</div>
+</div>
+<ul>
+ 	<li><strong>Parameters:</strong>
+<ul>
+ 	<li><code>$capacity</code> (int): The maximum weight capacity of the knapsack.</li>
+ 	<li><code>$weights</code> (array): An array of integers representing the weights of the items.</li>
+ 	<li><code>$values</code> (array): An array of integers representing the values of the items.</li>
+</ul>
+</li>
+ 	<li><strong>Throws:</strong>
+<ul>
+ 	<li><code>Exception</code>: If the <code>$weights</code> and <code>$values</code> arrays have different lengths.</li>
+</ul>
+</li>
+</ul>
+<h2>Solve Method</h2>
+<div>
+<div>
+<div>
+<pre><code role="text" data-test-id="code-content">public function solve(): array {
+    // ... (dynamic programming logic) ...
+    return [
+        'maxValue' =&gt; $dp[&gt;$this-n][$this-&gt;capacity],
+        'selectedItems' =&gt; $selected
+    ];
+}
+</code></pre>
+</div>
+</div>
+</div>
+<ul>
+ 	<li><strong>Returns:</strong>
+<ul>
+ 	<li>An associative array containing:
+<ul>
+ 	<li><code>maxValue</code> (int): The maximum total value that can be obtained.</li>
+ 	<li><code>selectedItems</code> (array): A boolean array indicating which items were selected (true) or not (false).</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2>Format Result Method</h2>
+<div>
+<div>
+<div>
+<pre><code role="text" data-test-id="code-content">public function formatResult(array $result): string {
+    // ... (formatting logic) ...
+    return $output;
+}
+</code></pre>
+</div>
+</div>
+</div>
+<ul>
+ 	<li><strong>Parameters:</strong>
+<ul>
+ 	<li><code>$result</code> (array): The result array returned by the <code>solve()</code> method.</li>
+</ul>
+</li>
+ 	<li><strong>Returns:</strong>
+<ul>
+ 	<li>A string representing the results in a human-readable format.</li>
+</ul>
+</li>
+</ul>
+<h2>Usage Example</h2>
+<div>
+<div>
+<div>
+<pre><code role="text" data-test-id="code-content">$capacity = 50;
+$weights = [10, 20, 30];
+$values = [60, 100, 120];
+
+$knapsack = new Knapsack($capacity, $weights, $values);
+$result = $knapsack-&gt;solve();
+$formattedResult = $knapsack-&gt;formatResult($result);
+
+echo $formattedResult;
+</code></pre>
+</div>
+</div>
+</div>
+<h2>Installation</h2>
+To use this class, simply include the PHP file in your project. No additional installation is required.
+<h2>Algorithm</h2>
+The <code>solve()</code> method implements the dynamic programming approach to solve the 0/1 Knapsack problem. It uses a 2D array <code>$dp</code> to store the maximum values that can be obtained for different combinations of items and capacities. The solution is then reconstructed by tracing back through the <code>$dp</code> array.
+<h2>Notes</h2>
+<ul>
+ 	<li>The indices of the <code>$weights</code> and <code>$values</code> arrays should correspond to each other.</li>
+ 	<li>The <code>formatResult()</code> method provides a simple way to display the results. You can customize it to fit your specific needs.</li>
+ 	<li>This implementation assumes non-negative weights and values.</li>
+</ul>
+
+
+<p class=""><strong>Real-world applications of the knapsack problem</strong></p>
+<p class="">The knapsack problem, a combinatorial optimization problem, has surprisingly broad applications in various fields. Here are some real-world examples:</p>
+<p class=""><strong>1. Logistics and transportation:</strong></p>
+
+<ul class="">
+ 	<li class=""><strong>Container loading:</strong>
+<ul class="">
+ 	<li class="">Optimizing the loading of containers onto ships, trucks, or airplanes to maximize cargo value without exceeding weight and volume limits.</li>
+ 	<li class="">Planning delivery routes, deciding which orders to send on each trip based on their size, destination, and vehicle capacity.</li>
+</ul>
+</li>
+ 	<li class=""><strong>Inventory management:</strong>
+<ul class="">
+ 	<li class="">Maximizing the use of storage space in warehouses, deciding which items to store and in what quantities.</li>
+ 	<li class="">Optimizing order picking, selecting items that maximize order value within weight and volume constraints.</li>
+</ul>
+</li>
+</ul>
+<p class=""><strong>2. Finance:</strong></p>
+
+<ul class="">
+ 	<li class=""><strong>Investment portfolio selection:</strong>
+<ul class="">
+ 	<li class="">Choosing the optimal combination of financial assets (stocks, bonds, etc.) to maximize expected return within a risk limit.</li>
+</ul>
+</li>
+ 	<li class=""><strong>Capital budgeting:</strong>
+<ul class="">
+ 	<li class="">Selecting investment projects that maximize net present value within a limited budget.</li>
+</ul>
+</li>
+</ul>
+<p class=""><strong>3. Computer science:</strong></p>
+
+<ul class="">
+ 	<li class=""><strong>Resource allocation:</strong>
+<ul class="">
+ 	<li class="">Optimizing the allocation of computational resources (CPU, memory, etc.) to different tasks to maximize system performance.</li>
+ 	<li class="">In cloud computing, understanding how to divide a computational workload between many servers efficiently.</li>
+</ul>
+</li>
+ 	<li class=""><strong>Cryptography:</strong>
+<ul class="">
+ 	<li class="">Some encryption algorithms are based on the difficulty of solving the knapsack problem.</li>
+</ul>
+</li>
+</ul>
+<p class=""><strong>4. Other fields:</strong></p>
+
+<ul class="">
+ 	<li class=""><strong>Travel planning:</strong>
+<ul class="">
+ 	<li class="">Deciding which items to carry in a backpack or suitcase to maximize the value of the items within a weight limit.</li>
+</ul>
+</li>
+ 	<li class=""><strong>Material cutting:</strong>
+<ul class="">
+ 	<li class="">Optimizing the cutting of materials (wood, fabric, etc.) to minimize waste.</li>
+</ul>
+</li>
+ 	<li class=""><strong>Resource allocation in projects:</strong>
+<ul class="">
+ 	<li class="">Distributing budgets in the most efficient way between different actions, to achieve a greater impact.</li>
+</ul>
+</li>
+</ul>
+<p class="">In summary, the knapsack problem applies to situations where decisions need to be made about allocating limited resources to maximize a specific objective.</p>
